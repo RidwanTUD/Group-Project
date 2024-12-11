@@ -55,11 +55,19 @@ int main()
             cout << "\nWhat would you like to do?" << endl;
             cout << "1. View Tasks" << endl;
             cout << "2. Add Task" << endl;
-            cout << "3. Logout" << endl;
+            cout << "3. Mark Task as Completed" << endl;
+            cout << "4. View Incomplete Tasks" << endl;
+            cout << "5. Edit Task" << endl;
+            cout << "6. Remove Task" << endl;
+            cout << "7. Logout" << endl;
             cin >> choice;
             
-            switch (choice) //depending on the choice 1-3 from the input, case 1-3 will execute
-            {
+            switch (choice) //depending on the choice 1-7 from the input, case 1-7 will execute
+            { 
+                case 1: //View tasks
+                users[currentUser].ViewTasks();
+                break;
+
                 case 2: //Assigns Task
                 {
                     string name, description, deadline;
@@ -74,18 +82,55 @@ int main()
                     users[currentUser].AssignTask(name, description, deadline);
                     break;
                 }
-                
-                case 1: //View tasks
-                users[currentUser].ViewTasks();
+
+                case 3: //Mark task Completed
+                {
+                    int taskNumber;
+                    cout << "Enter the task number to mark as completed: ";
+                    cin >> taskNumber;
+
+                    users[currentUser].MarkTaskCompleted(taskNumber);
+                    break;
+                }
+
+                case 4: //View Incomplete Tasks
+                users[currentUser].ViewIncompleteTasks();
                 break;
 
-                case 3: //Logs out
+                case 5: // Edit Task
+                {
+                    int taskNumber;
+                    string name, description, deadline;
+                    cout << "Enter the task number to be edited: ";
+                    cin >> taskNumber;
+                    cin.ignore(); // clears input
+                    cout << "Enter new task name: ";
+                    getline(cin, name); // getline allows spaces in input, unlike cin
+                    cout << "\nEnter new task description: ";
+                    getline(cin, description);
+                    cout << "\nEnter new task deadline: ";
+                    getline(cin, deadline);
+
+                    users[currentUser].EditTask(taskNumber, name, description, deadline);
+                    break;
+                } 
+
+                case 6: // Remove Task
+                {
+                    int taskNumber;
+                    cout << "Enter the task number to be removed: ";
+                    cin >> taskNumber;
+                    users[currentUser].RemoveTask(taskNumber);
+                    break;
+                }                
+
+                case 7: //Logs out
                 cout << users[currentUser].Getusername() << " logged out" << endl;
                 loggedIn = false;
                 break;
                 
                 default: // Error message
-                cout << "Invalid choice, enter a number 1-3" << endl;
+                cout << "Invalid choice, enter a number 1-7" << endl;
 
             }
         }

@@ -21,6 +21,11 @@ class User // defines class "User"
 
         void AssignTask(string task, string description, string deadline); //assigns a task to the user
         void ViewTasks(); // View all Tasks
+        void MarkTaskCompleted(int taskNumber);
+        void ViewIncompleteTasks();
+        void EditTask(int taskNumber,string task, string description, string deadline);
+        void RemoveTask(int taskNumber);
+
 
     protected:
 
@@ -30,6 +35,7 @@ class User // defines class "User"
         string tasks[Max_Tasks]; //creates an array of maximum 10 tasks
         string descriptions[Max_Tasks]; //creates an array to store task description
         string deadlines[Max_Tasks]; //creates an array to store task deadlines
+        bool statuses[Max_Tasks]; //creates an array to store task status. 0 = incomplete, 1 = complete
         int taskCount; // this int will be used to track how many tasks is assigned to a user
         
 };
