@@ -19,7 +19,8 @@ class User // defines class "User"
         string Getpassword() { return password; }
         void Setpassword(string val) { password = val; }
 
-        void AssignTask(string task); //assigns a task to the user
+        void AssignTask(string task, string description, string deadline); //assigns a task to the user
+        void ViewTasks(); // View all Tasks
 
     protected:
 
@@ -27,7 +28,10 @@ class User // defines class "User"
         string username; //stores username
         string password; // stores password
         string tasks[Max_Tasks]; //creates an array of maximum 10 tasks
+        string descriptions[Max_Tasks]; //creates an array to store task description
+        string deadlines[Max_Tasks]; //creates an array to store task deadlines
         int taskCount; // this int will be used to track how many tasks is assigned to a user
+        
 };
 
 #endif // USER_H
